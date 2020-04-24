@@ -35,7 +35,10 @@ class WineControl extends React.Component {
     let currentlyVisibleState=null;
     let buttonText=null;
 
-    if(this.state.formVisibleOnPage){
+    if(this.state.selectedTicket != null){
+      currentlyVisibleState=<WineBarrelDetail wineBarrel={this.state.selectedWineBarrel} />
+      buttonText="Return to Wine Barrel List";
+    } else if(this.state.formVisibleOnPage){
       currentlyVisibleState=<NewWineBarrelForm onNewWineBarrelCreation={this.handleAddingNewWineBarrelToList}/>;
       buttonText="Return to Wine Barrel List";
     } else {
