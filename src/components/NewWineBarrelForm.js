@@ -7,6 +7,9 @@ function NewWineBarrelForm(props){
   function handleNewWineBarrelFormSubmission(event) {
     event.preventDefault();
     props.onNewWineBarrelCreation({name: event.target.name.value, origin: event.target.origin.value, liters: event.target.liters.value, id: v4()});
+    console.log(event.target.name.value);
+    console.log(event.target.origin.value);
+    console.log(event.target.liters.value);
   }
 
   return(
