@@ -7,7 +7,8 @@ class WineControl extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      formVisibleonPage: false
+      formVisibleonPage: false,
+      masterWineBarrelList: []
     };
   }
 
@@ -25,7 +26,7 @@ class WineControl extends React.Component {
       currentlyVisibleState=<NewWineBarrelForm />;
       buttonText="Return to Wine Barrel List";
     } else {
-      currentlyVisibleState=<WineBarrelList />;
+      currentlyVisibleState=<WineBarrelList wineBarrelList={this.masterWineBarrelList} />;
       buttonText="Add Wine Barrel";
     }
 
