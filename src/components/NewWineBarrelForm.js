@@ -6,7 +6,11 @@ function NewWineBarrelForm(props){
 
   function handleNewWineBarrelFormSubmission(event) {
     event.preventDefault();
-    props.onNewWineBarrelCreation({name: event.target.name.value, origin: event.target.origin.value, liters: event.target.liters.value, id: v4()});
+    props.onNewWineBarrelCreation({
+      name: event.target.name.value, 
+      origin: event.target.origin.value, 
+      liters: event.target.liters.value, 
+      id: v4()});
     console.log(event.target.name.value);
     console.log(event.target.origin.value);
     console.log(event.target.liters.value);
@@ -21,11 +25,11 @@ function NewWineBarrelForm(props){
         placeholder='Wine name'/>
               <input
         type='text'
-        origin='origin'
+        name='origin'
         placeholder='State/Region'/>
         <input
         type='text'
-        liters='liters'
+        name='liters'
         placeholder='Liters'/>
         <button type='submit'>Add new barrel</button>
       </form>
