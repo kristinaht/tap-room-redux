@@ -18,6 +18,13 @@ class WineControl extends React.Component {
     }));
   }
 
+  handleAddingNewWineBarrelToList = (newWineBarrel) => {
+    const newMasterWineBarrelList = this.state.masterWineBarrelList.concat(newWineBarrel);
+      this.setState({masterWineBarrelList: newMasterWineBarrelList,
+      formVisibleonPage: false
+    });
+  }
+
   render(){
     let currentlyVisibleState=null;
     let buttonText=null;
