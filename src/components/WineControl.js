@@ -7,33 +7,33 @@ class WineControl extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      formVisibleonPage: false,
+      formVisibleOnPage: false,
       masterWineBarrelList: []
     };
   }
 
   handleClick = () => {
     this.setState(prevState =>({
-      formVisibleonPage: !prevState.formVisibleonPage
+      formVisibleOnPage: !prevState.formVisibleOnPage
     }));
   }
 
   handleAddingNewWineBarrelToList = (newWineBarrel) => {
     const newMasterWineBarrelList = this.state.masterWineBarrelList.concat(newWineBarrel);
-      this.setState({masterWineBarrelList: newMasterWineBarrelList,
-      formVisibleonPage: false
+      this.setState({masterWineBarrelList: newMasterWineBarrelList
     });
+    this.setState({ formVisibleOnPage: false});
   }
 
   render(){
     let currentlyVisibleState=null;
     let buttonText=null;
 
-    if(this.state.formVisibleonPage){
-      currentlyVisibleState=<NewWineBarrelForm />;
+    if(this.state.formVisibleOnPage){
+      currentlyVisibleState=<NewWineBarrelForm onNewWineBarrelCreation={this.handleAddingNewWineBarrelToList}/>;
       buttonText="Return to Wine Barrel List";
     } else {
-      currentlyVisibleState=<WineBarrelList wineBarrelList={this.masterWineBarrelList} />;
+      currentlyVisibleState=<WineBarrelList wineBarrelList={this.state.masterWineBarrelList} />;
       buttonText="Add Wine Barrel";
     }
 

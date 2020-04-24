@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 function NewWineBarrelForm(props){
 
   function handleNewWineBarrelFormSubmission(event) {
-    //something goes here
+    event.preventDefault();
+    props.onNewWineBarrelCreation({name: event.target.name.value, origin: event.target.origin.value, liters: event.target.liters.value, id: v4()});
   }
 
   return(
