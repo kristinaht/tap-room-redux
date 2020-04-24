@@ -8,7 +8,8 @@ class WineControl extends React.Component {
     super(props);
     this.state={
       formVisibleOnPage: false,
-      masterWineBarrelList: []
+      masterWineBarrelList: [],
+      selectedWineBarrel: null
     };
   }
 
@@ -23,6 +24,11 @@ class WineControl extends React.Component {
       this.setState({masterWineBarrelList: newMasterWineBarrelList
     });
     this.setState({ formVisibleOnPage: false});
+  }
+
+  handleChangingSelectedWineBarrel = (id) => {
+    const selectedWineBarrel = this.state.masterWineBarrelList.filter(wineBarrel => wineBarrel.id === id)[0];
+    this.setState({selectedWineBarrel: selectedWineBarrel});
   }
 
   render(){
