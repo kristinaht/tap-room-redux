@@ -1,6 +1,7 @@
 import React from 'react';
 import WineBarrelList from './WineBarrelList';
 import NewWineBarrelForm from './NewWineBarrelForm';
+import WineBarrelDetail from './WineBarrelDetail';
 
 class WineControl extends React.Component {
 
@@ -14,9 +15,16 @@ class WineControl extends React.Component {
   }
 
   handleClick = () => {
-    this.setState(prevState =>({
-      formVisibleOnPage: !prevState.formVisibleOnPage
-    }));
+    if (this.state.selectedWineBarrel != null){
+      this.setState({
+        formVisibleOnPage: false,
+        selectedWineBarrel: null
+      });
+    } else {
+      this.setState(prevState =>({
+        formVisibleOnPage: !prevState.formVisibleOnPage
+      }));
+    }  
   }
 
   handleAddingNewWineBarrelToList = (newWineBarrel) => {
@@ -35,14 +43,14 @@ class WineControl extends React.Component {
     let currentlyVisibleState=null;
     let buttonText=null;
 
-    if(this.state.selectedTicket != null){
+    if(this.state.selectedWineBarrel != null){
       currentlyVisibleState=<WineBarrelDetail wineBarrel={this.state.selectedWineBarrel} />
       buttonText="Return to Wine Barrel List";
     } else if(this.state.formVisibleOnPage){
       currentlyVisibleState=<NewWineBarrelForm onNewWineBarrelCreation={this.handleAddingNewWineBarrelToList}/>;
       buttonText="Return to Wine Barrel List";
     } else {
-      currentlyVisibleState=<WineBarrelList wineBarrelList={this.state.masterWineBarrelList} />;
+      currentlyVisibleState=<WineBarrelList wineBarrelList={this.state.masterWineBarrelList} onWineBarrelSelection={this.handleChangingSelectedWineBarrel} />;
       buttonText="Add Wine Barrel";
     }
 
