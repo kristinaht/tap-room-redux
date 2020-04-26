@@ -9,6 +9,7 @@ function WineBarrel(props){
       <h3>{props.origin}</h3>
       <h3>{props.liters}</h3>
       </div>
+      <button onClick = {() => props.whenBuyClicked(props.id)} type='submit'>BUY</button>
     </React.Fragment>
   );
 }
@@ -19,6 +20,6 @@ WineBarrel.propTypes={
   whenWineBarrelClicked: PropTypes.func,
   name: PropTypes.string,
   origin: PropTypes.string,
-  liters: PropTypes.string,
+  liters: PropTypes.number,
   id: PropTypes.string
 }

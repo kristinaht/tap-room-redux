@@ -10,6 +10,7 @@ function WineBarrelList(props){
       {props.wineBarrelList.map((wineBarrel) =>
         <WineBarrel
         whenWineBarrelClicked = { props.onWineBarrelSelection }
+        whenBuyClicked = { props.onClickingBuy}
         name={wineBarrel.name}
         // origin={wineBarrel.origin}
         // liters={wineBarrel.liters}
@@ -25,5 +26,6 @@ export default WineBarrelList;
 
 WineBarrelList.propTypes={
   wineBarrelList: PropTypes.array,
-  onWineBarrelSelection: PropTypes.func
+  onWineBarrelSelection: PropTypes.func,
+  onClickingBuy: PropTypes.func
 }
