@@ -1,7 +1,61 @@
+# _Srdjan's Wine Cellar_
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+#### _React Fundamentals Independent Project_, _24 April 2020_
+
+#### By _**Kristina Hengster Tintor**_
+
+## Description
+
+_This appliation allows Wine Cellar owner to track their wine barrels._
+
+## User Stories
+
+* User can see a list/menu of all available wine barrels. 
+* User can submit a form to add a new wine barrel to a list.
+* User can  click on a wine barrel to see its detail page. For each wine barrel, user can see its name, brand, price and alcoholContent.
+* User can see how many liters are left in a wine barrel in the detail page.
+* User can click a button next to a wine barrel whenever they sell it. This decreases the number of liters left by 1. Liters do not go below 0.
 
 ## Project Diagram
 ![Components](src/img/projectDiagram.png)
+
+## Setup/Installation:
+
+###### For Windows:
+_Please visit the [Node.js website](https://nodejs.org/en/download/) for installation instructions._
+
+#### Install this application
+
+_Clone this repository via Terminal using the following commands:_
+* _$ cd desktop_
+* _$ git clone {url to this repository}_
+* _$ cd PowerPlant_
+_Then, confirm that you have navigated to the PowerPlant project directory by entering "pwd" in Terminal._
+
+_Next, install npm at the project's root directory via the following commands:_
+* _$ npm install_
+* _$ npm run build_
+
+_Open the contents of the directory in a text editor or IDE of your choice (e.g., to open the contents of the directory in Visual Studio Code on macOS, enter the command "code ." in Terminal)._
+
+## **Technologies used**
+
+* React 6.13.7
+
+* UUID
+
+* Git 2.23.0
+
+* Webpack
+
+* JavaScript 
+
+* Visual Studio Code 1.43.1
+
+* GitBash
+
 
 ## Available Scripts
 
@@ -69,3 +123,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### License
+
+*This webpage is licensed under the MIT license.*
+
+Copyright (c) 2020 **_Kristina Hengster Tintor_**
+
