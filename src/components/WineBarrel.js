@@ -9,7 +9,7 @@ function WineBarrel(props){
       <h3>{props.origin}</h3>
       <h3>{props.liters}</h3>
       </div>
-      <button onClick = {() => props.whenBuyClicked(props.id)} type='submit'>BUY</button>
+      <button onClick = {() => props.whenSellClicked(props.id)} type='submit'>SELL</button>
     </React.Fragment>
   );
 }

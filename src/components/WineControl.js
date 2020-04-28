@@ -55,18 +55,26 @@ class WineControl extends React.Component {
     } 
   }
 
+  handleDeletingWineBarrel = (id) => {
+    const newMasterWineBarrelList = this.state.masterWineBarrelList.filter(wineBarrel => wineBarrel.id !== id);
+    this.setState({
+      masterWineBarrelList: newMasterWineBarrelList,
+      selectedWineBarrel: null
+    });
+  }
+
   render(){
     let currentlyVisibleState=null;
     let buttonText=null;
 
     if(this.state.selectedWineBarrel != null){
-      currentlyVisibleState=<WineBarrelDetail wineBarrel={this.state.selectedWineBarrel} />
+      currentlyVisibleState=<WineBarrelDetail wineBarrel={this.state.selectedWineBarrel} onClickingDelete={ this.handleDeletingWineBarrel } />
       buttonText="Return to Wine Barrel List";
     } else if(this.state.formVisibleOnPage){
       currentlyVisibleState=<NewWineBarrelForm onNewWineBarrelCreation={this.handleAddingNewWineBarrelToList}/>;
       buttonText="Return to Wine Barrel List";
     } else {
-      currentlyVisibleState=<WineBarrelList wineBarrelList={this.state.masterWineBarrelList} onWineBarrelSelection={this.handleChangingSelectedWineBarrel} onClickingBuy={this.handleWineBarrelPurchase} />;
+      currentlyVisibleState=<WineBarrelList wineBarrelList={this.state.masterWineBarrelList} onWineBarrelSelection={this.handleChangingSelectedWineBarrel} onClickingSell={this.handleWineBarrelPurchase} />;
       buttonText="Add Wine Barrel";
     }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function WineBarrelDetail(props) {
-  const { wineBarrel } = props;
+  const { wineBarrel, onClickingDelete } = props;
 
   return(
     <React.Fragment>
@@ -10,6 +10,7 @@ function WineBarrelDetail(props) {
       <h2>{wineBarrel.name}</h2>
       <h3>{wineBarrel.origin}</h3>
       <h3>{wineBarrel.liters}</h3>
+      <button onClick={ () => onClickingDelete(wineBarrel.id) }>DELETE</button>
     </React.Fragment>
   )
 }
@@ -17,5 +18,6 @@ function WineBarrelDetail(props) {
 export default WineBarrelDetail;
 
 WineBarrelDetail.propTypes={
-  wineBarrel: PropTypes.object
+  wineBarrel: PropTypes.object,
+  onClickingDelete: PropTypes.func
 }
