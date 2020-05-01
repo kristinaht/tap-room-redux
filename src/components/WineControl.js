@@ -50,8 +50,14 @@ class WineControl extends React.Component {
   }
 
   handleChangingSelectedWineBarrel = (id) => {
-    const selectedWineBarrel = this.state.masterWineBarrelList.filter(wineBarrel => wineBarrel.id === id)[0];
-    this.setState({selectedWineBarrel: selectedWineBarrel});
+    const { dispatch } = this.props;
+    const action = {
+      
+    }
+
+
+    // const selectedWineBarrel = this.state.masterWineBarrelList.filter(wineBarrel => wineBarrel.id === id)[0];
+    // this.setState({selectedWineBarrel: selectedWineBarrel});
   }
 
   handleWineBarrelPurchase = (id) => {
@@ -70,11 +76,18 @@ class WineControl extends React.Component {
   }
 
   handleDeletingWineBarrel = (id) => {
-    const newMasterWineBarrelList = this.state.masterWineBarrelList.filter(wineBarrel => wineBarrel.id !== id);
-    this.setState({
-      masterWineBarrelList: newMasterWineBarrelList,
-      selectedWineBarrel: null
-    });
+    const { dispatch } = this.props;
+    const action = {
+     type: a.deleteWineBarrel,
+     id: id
+    }
+
+
+    // const newMasterWineBarrelList = this.state.masterWineBarrelList.filter(wineBarrel => wineBarrel.id !== id);
+    // this.setState({
+    //   masterWineBarrelList: newMasterWineBarrelList,
+    //   selectedWineBarrel: null
+    // });
   }
 
   render(){
