@@ -13,4 +13,13 @@ describe('help queue actions', () => {
       type: 'TOGGLE_FORM'
     });
   });
+
+  it('addWineBarrel should create ADD_WINE_BARREL action', () => {
+    expect(actions.addWineBarrel({name: 'Sassicaia', origin: 'Tuscany', liters: '75', id:1})).toEqual({
+      type: 'ADD_WINE_BARREL', 
+      name: 'Sassicaia', 
+      origin: 'Tuscany',
+      id: 1
+    });
+  });
 });

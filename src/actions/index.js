@@ -6,3 +6,10 @@ export const deleteWineBarrel = id => ({
 export const toggleForm = () => ({
   type: 'TOGGLE_FORM'
 });
+
+export const addWineBarrel = (wineBarrel) => {
+  const { name, origin, liters, id } = wineBarrel;
+  return {
+    
+  }
+}
