@@ -10,8 +10,8 @@ class WineControl extends React.Component {
     this.state={
       formVisibleOnPage: false,
       masterWineBarrelList: [],
-      selectedWineBarrel: null,
-      youWantToMuchWineMessage: null
+      selectedWineBarrel: null
+      // youWantToMuchWineMessage: null
     };
   }
 
