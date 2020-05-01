@@ -10,6 +10,9 @@ export const toggleForm = () => ({
 export const addWineBarrel = (wineBarrel) => {
   const { name, origin, liters, id } = wineBarrel;
   return {
-    
+    type: 'ADD_WINE_BARREL', 
+    name: name, 
+    origin: origin,
+    id: id
   }
 }
