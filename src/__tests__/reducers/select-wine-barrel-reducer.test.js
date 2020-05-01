@@ -1,4 +1,5 @@
 import selectWineBarrelReducer from './../../reducers/select-wine-barrel-reducer';
+import * as c from './../../actions/actionTypes';
 
 
 describe('selectWineBarrelReducer', () => {
@@ -21,7 +22,7 @@ describe('selectWineBarrelReducer', () => {
 
   test('Should successfully select a wine barrel', () => {
     action = {
-      type: 'SELECT_WINE_BARREL',
+      type: c.SELECT_WINE_BARREL,
       id: 1
     }
   expect(selectWineBarrelReducer(currentState, action)).toEqual({
