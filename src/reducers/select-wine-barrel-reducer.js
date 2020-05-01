@@ -1,4 +1,4 @@
-import * as c from './../../actions/actionTypes';
+import * as c from './../actions/actionTypes';
 
 export default (state=null, action) => {
   const { id } = action;
