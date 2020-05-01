@@ -4,6 +4,21 @@ describe('wineBarrelListReducer', () => {
 
   let action;
 
+  const currentState = {
+    1: {
+    name: 'Che non Che',
+    origin: 'Istria',
+    liters: '100',
+    id: 1
+    },
+    2: {
+    name: 'Smederevka',
+    origin: 'Serbia',
+    liters: '50',
+    id: 1
+    },
+  }
+
   const wineBarrelData = {
     name: 'Che non Che',
     origin: 'Istria',
@@ -34,4 +49,19 @@ describe('wineBarrelListReducer', () => {
       }
     });
   });
+
+  test('Should successfully delete a wine barrel', () => {
+    action = {
+      type: 'DELETE_WINE_BARREL',
+      id: 1
+    } 
+    expect(wineBarrelListReducer(currentState, action)).toEqual({
+      2: {
+        name: 'Smederevka',
+        origin: 'Serbia',
+        liters: '50',
+        id: 1
+        }
+    })
+  })
 });
