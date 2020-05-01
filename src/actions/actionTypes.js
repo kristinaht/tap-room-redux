@@ -1,0 +1,3 @@
+export const ADD_WINE_BARREL = 'ADD_WINE_BARREL';
+export const TOGGLE_FORM = 'TOGGLE_FORM';
+export const DELETE_WINE_BARREL = 'DELETE_WINE_BARREL';

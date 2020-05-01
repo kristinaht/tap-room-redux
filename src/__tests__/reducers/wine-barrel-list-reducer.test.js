@@ -1,4 +1,5 @@
 import wineBarrelListReducer from './../../reducers/wine-barrel-list-reducer';
+import * as c from './../../actions/actionTypes';
 
 describe('wineBarrelListReducer', () => {
 
@@ -34,7 +35,7 @@ describe('wineBarrelListReducer', () => {
 
   test('Should successfully add new wine barrel to masterBarrelList', () => {
     action = {
-      type: 'ADD_WINE_BARREL',
+      type: c.ADD_WINE_BARREL,
       name: name,
       origin: origin,
       liters: liters,
@@ -52,7 +53,7 @@ describe('wineBarrelListReducer', () => {
 
   test('Should successfully delete a wine barrel', () => {
     action = {
-      type: 'DELETE_WINE_BARREL',
+      type: c.DELETE_WINE_BARREL,
       id: 1
     } 
     expect(wineBarrelListReducer(currentState, action)).toEqual({
