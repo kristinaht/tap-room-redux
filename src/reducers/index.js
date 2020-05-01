@@ -4,9 +4,9 @@ import selectWineBarrelReducer from './select-wine-barrel-reducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-  // formVisibleOnPage: formVisibleReducer,
-  // masterWineBarrelList: wineBarrelListReducer,
-  // selectedWineBarrel: selectWineBarrelReducer
+  formVisibleOnPage: formVisibleReducer,
+  masterWineBarrelList: wineBarrelListReducer,
+  selectedWineBarrel: selectWineBarrelReducer
 });
 
 export default rootReducer;
