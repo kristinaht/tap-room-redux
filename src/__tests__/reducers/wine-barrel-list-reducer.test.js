@@ -16,7 +16,7 @@ describe('wineBarrelListReducer', () => {
     origin: 'Serbia',
     liters: '50',
     id: 1
-    },
+    }
   }
 
   const wineBarrelData = {
