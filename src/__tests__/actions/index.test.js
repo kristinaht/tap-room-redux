@@ -20,6 +20,7 @@ describe('help queue actions', () => {
       type: c.ADD_WINE_BARREL, 
       name: 'Sassicaia', 
       origin: 'Tuscany',
+      liters: '75',
       id: 1
     });
   });

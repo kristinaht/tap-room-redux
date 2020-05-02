@@ -7,17 +7,19 @@ function WineBarrelList(props){
   return(
     <React.Fragment>
       <hr />
-      {props.wineBarrelList.map((wineBarrel) =>
-        <WineBarrel
+      {Object.values(props.wineBarrelList).map((wineBarrel) =>{
+        return <WineBarrel
         whenWineBarrelClicked = { props.onWineBarrelSelection }
         whenSellClicked = { props.onClickingSell}
         name={wineBarrel.name}
-        // origin={wineBarrel.origin}
-        // liters={wineBarrel.liters}
+        
+        origin={wineBarrel.origin}
+        liters={wineBarrel.liters}
         key={wineBarrel.id}
         id={wineBarrel.id}
         />
-        )}
+      })}
+        
       </React.Fragment>
   );
 }
@@ -25,7 +27,7 @@ function WineBarrelList(props){
 export default WineBarrelList;
 
 WineBarrelList.propTypes={
-  wineBarrelList: PropTypes.array,
+  wineBarrelList: PropTypes.object,
   onWineBarrelSelection: PropTypes.func,
   onClickingSell: PropTypes.func
 }

@@ -4,6 +4,7 @@ import NewWineBarrelForm from './NewWineBarrelForm';
 import WineBarrelDetail from './WineBarrelDetail';
 import { connect } from 'react-redux';
 import * as a from './../actions';
+import PropTypes from 'prop-types';
 
 class WineControl extends React.Component {
 
@@ -12,7 +13,7 @@ class WineControl extends React.Component {
     this.state={
       // formVisibleOnPage: false, - LOCAL STATE
       // masterWineBarrelList: [], - SHARED STATE
-      // selectedWineBarrel: null  - LOCAL STATE
+      selectedWineBarrel: null  //- LOCAL STATE
       // youWantToMuchWineMessage: null
     };
   }
@@ -24,23 +25,23 @@ class WineControl extends React.Component {
         selectedWineBarrel: null
       });
     } else {
-      this.setState(prevState =>({
-        formVisibleOnPage: !prevState.formVisibleOnPage
-      }));
+      const { dispatch } = this.props;
+      const action = a.toggleForm();
+      dispatch(action);
+      this.setState({ selectedWineBarrel: null});
+      // this.setState(prevState =>({
+      //   formVisibleOnPage: !prevState.formVisibleOnPage
+      // }));
     }  
   }
 
   handleAddingNewWineBarrelToList = (newWineBarrel) => {
     const { dispatch } = this.props;
     const { id, name, origin, liters } = newWineBarrel;
-    const action = {
-      type: a.addWineBarrel,
-      name: name,
-      origin: origin,
-      liters: liters,
-      id: id
-    }
+    const action = a.addWineBarrel(newWineBarrel);
     dispatch(action);
+    const actionTwo = a.toggleForm();
+    dispatch(actionTwo);
     
 
     // const newMasterWineBarrelList = this.state.masterWineBarrelList.concat(newWineBarrel);
@@ -50,14 +51,12 @@ class WineControl extends React.Component {
   }
 
   handleChangingSelectedWineBarrel = (id) => {
-    const { dispatch } = this.props;
-    const action = {
-      
-    }
-
-
-    // const selectedWineBarrel = this.state.masterWineBarrelList.filter(wineBarrel => wineBarrel.id === id)[0];
-    // this.setState({selectedWineBarrel: selectedWineBarrel});
+    // const { dispatch } = this.props;
+    // const action = {
+    // type: a.selectWineBarrel(masterWineBarrelList[id]);?? or just id??
+    // }
+    const selectedWineBarrel = this.props.masterWineBarrelList[id];
+    this.setState({selectedWineBarrel: selectedWineBarrel});
   }
 
   handleWineBarrelPurchase = (id) => {
@@ -81,7 +80,7 @@ class WineControl extends React.Component {
      type: a.deleteWineBarrel,
      id: id
     }
-
+    dispatch(action);
 
     // const newMasterWineBarrelList = this.state.masterWineBarrelList.filter(wineBarrel => wineBarrel.id !== id);
     // this.setState({
@@ -101,7 +100,7 @@ class WineControl extends React.Component {
       currentlyVisibleState=<NewWineBarrelForm onNewWineBarrelCreation={this.handleAddingNewWineBarrelToList}/>;
       buttonText="Return to Wine Barrel List";
     } else {
-      currentlyVisibleState=<WineBarrelList wineBarrelList={this.state.masterWineBarrelList} onWineBarrelSelection={this.handleChangingSelectedWineBarrel} onClickingSell={this.handleWineBarrelPurchase} />;
+      currentlyVisibleState=<WineBarrelList wineBarrelList={this.props.masterWineBarrelList} onWineBarrelSelection={this.handleChangingSelectedWineBarrel} onClickingSell={this.handleWineBarrelPurchase} />;
       buttonText="Add Wine Barrel";
     }
 
@@ -114,8 +113,18 @@ class WineControl extends React.Component {
   }
 }
 
+WineControl.propTypes = {
+  masterWineBarrelList: PropTypes.object
+}
 
+const mapStateToProps = state => {
+  return {
+    masterWineBarrelList: state.masterWineBarrelList,
+    formVisibleOnPage: state.formVisibleOnPage
+    // selectedWineBarrel:
+  }
+}
 
-WineControl = connect()(WineControl);
+WineControl = connect(mapStateToProps)(WineControl);
 
 export default WineControl;
