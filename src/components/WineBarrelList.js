@@ -14,7 +14,7 @@ function WineBarrelList(props){
         name={wineBarrel.name}
         
         origin={wineBarrel.origin}
-        liters={wineBarrel.liters}
+        // liters={wineBarrel.liters}
         key={wineBarrel.id}
         id={wineBarrel.id}
         />

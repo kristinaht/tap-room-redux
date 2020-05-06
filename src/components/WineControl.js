@@ -6,66 +6,53 @@ import { connect } from 'react-redux';
 import * as a from './../actions';
 import PropTypes from 'prop-types';
 
-class WineControl extends React.Component {
+// class WineControl extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state={
-      // formVisibleOnPage: false, - LOCAL STATE
-      // masterWineBarrelList: [], - SHARED STATE
-      selectedWineBarrel: null  //- LOCAL STATE
-      // youWantToMuchWineMessage: null
-    };
-  }
+function WineControl(props) {
 
-  handleClick = () => {
-    if (this.state.selectedWineBarrel != null){
-      this.setState({
-        formVisibleOnPage: false,
-        selectedWineBarrel: null
-      });
+  const { dispatch } = props;
+
+  // constructor(props) {
+  //   super(props);
+  //   props={
+  //     // formVisibleOnPage: false, - LOCAL STATE
+  //     // masterWineBarrelList: [], - SHARED STATE
+  //     selectedWineBarrel: null  //- LOCAL STATE
+  //     // youWantToMuchWineMessage: null
+  //   };
+  // }
+
+  const handleClick = () => {
+    if (props.selectedWineBarrel != null){
+      const action = a.unselectWineBarrel();
+      dispatch(action);
     } else {
-      const { dispatch } = this.props;
       const action = a.toggleForm();
       dispatch(action);
-      this.setState({ selectedWineBarrel: null});
-      // this.setState(prevState =>({
-      //   formVisibleOnPage: !prevState.formVisibleOnPage
-      // }));
     }  
   }
 
-  handleAddingNewWineBarrelToList = (newWineBarrel) => {
-    const { dispatch } = this.props;
-    const { id, name, origin, liters } = newWineBarrel;
+  const handleAddingNewWineBarrelToList = (newWineBarrel) => {
     const action = a.addWineBarrel(newWineBarrel);
     dispatch(action);
     const actionTwo = a.toggleForm();
     dispatch(actionTwo);
-    
-
-    // const newMasterWineBarrelList = this.state.masterWineBarrelList.concat(newWineBarrel);
-    //   this.setState({masterWineBarrelList: newMasterWineBarrelList
-    // });
-    // this.setState({ formVisibleOnPage: false});
   }
 
-  handleChangingSelectedWineBarrel = (id) => {
-    // const { dispatch } = this.props;
-    // const action = {
-    // type: a.selectWineBarrel(masterWineBarrelList[id]);?? or just id??
-    // }
-    const selectedWineBarrel = this.props.masterWineBarrelList[id];
-    this.setState({selectedWineBarrel: selectedWineBarrel});
+  const handleChangingSelectedWineBarrel = (id) => {
+    const { dispatch } = props;
+    const selectedWineBarrel = props.masterWineBarrelList[id];
+    const action = a.selectWineBarrel(selectedWineBarrel);
+    dispatch(action);
   }
 
-  handleWineBarrelPurchase = (id) => {
-    const currentlySelectedWineBarrel = this.state.masterWineBarrelList.filter(wineBarrel => wineBarrel.id === id)[0];
+  const handleWineBarrelPurchase = (id) => {
+    const currentlySelectedWineBarrel = props.masterWineBarrelList.filter(wineBarrel => wineBarrel.id === id)[0];
     const currentLiters = parseInt(currentlySelectedWineBarrel.liters);
     const purchaseAmount = 200;
     if (currentLiters >= purchaseAmount ){
       const newLitersInBarrel = currentlySelectedWineBarrel.liters - purchaseAmount;
-      const prevWineBarrelList = this.state.masterWineBarrelList.filter(wineBarrel => wineBarrel.id !== id);
+      const prevWineBarrelList = props.masterWineBarrelList.filter(wineBarrel => wineBarrel.id !== id);
       const updatedWineBarrel = { ...currentlySelectedWineBarrel, liters: newLitersInBarrel};
       this.setState({
         masterWineBarrelList: [...prevWineBarrelList, updatedWineBarrel],
@@ -74,43 +61,35 @@ class WineControl extends React.Component {
     } 
   }
 
-  handleDeletingWineBarrel = (id) => {
-    const { dispatch } = this.props;
-    const action = {
-     type: a.deleteWineBarrel,
-     id: id
-    }
+  const handleDeletingWineBarrel = (id) => {
+    const action = a.deleteWineBarrel(id);
     dispatch(action);
-
-    // const newMasterWineBarrelList = this.state.masterWineBarrelList.filter(wineBarrel => wineBarrel.id !== id);
-    // this.setState({
-    //   masterWineBarrelList: newMasterWineBarrelList,
-    //   selectedWineBarrel: null
-    // });
+    const actionTwo = a.unselectWineBarrel();
+    dispatch(actionTwo);
   }
 
-  render(){
+  // render(){
     let currentlyVisibleState=null;
     let buttonText=null;
 
-    if(this.state.selectedWineBarrel != null){
-      currentlyVisibleState=<WineBarrelDetail wineBarrel={this.state.selectedWineBarrel} onClickingDelete={ this.handleDeletingWineBarrel } />
+    if(props.selectedWineBarrel != null){
+      currentlyVisibleState=<WineBarrelDetail wineBarrel={props.selectedWineBarrel} onClickingDelete={ handleDeletingWineBarrel } />
       buttonText="Return to Wine Barrel List";
-    } else if(this.state.formVisibleOnPage){
-      currentlyVisibleState=<NewWineBarrelForm onNewWineBarrelCreation={this.handleAddingNewWineBarrelToList}/>;
+    } else if(props.formVisibleOnPage){
+      currentlyVisibleState=<NewWineBarrelForm onNewWineBarrelCreation={handleAddingNewWineBarrelToList}/>;
       buttonText="Return to Wine Barrel List";
     } else {
-      currentlyVisibleState=<WineBarrelList wineBarrelList={this.props.masterWineBarrelList} onWineBarrelSelection={this.handleChangingSelectedWineBarrel} onClickingSell={this.handleWineBarrelPurchase} />;
+      currentlyVisibleState=<WineBarrelList wineBarrelList={props.masterWineBarrelList} onWineBarrelSelection={handleChangingSelectedWineBarrel} onClickingSell={handleWineBarrelPurchase} />;
       buttonText="Add Wine Barrel";
     }
 
     return(
       <React.Fragment>
         {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
+        <button onClick={handleClick}>{buttonText}</button>
       </React.Fragment>
     )
-  }
+  // }
 }
 
 WineControl.propTypes = {
@@ -120,8 +99,8 @@ WineControl.propTypes = {
 const mapStateToProps = state => {
   return {
     masterWineBarrelList: state.masterWineBarrelList,
-    formVisibleOnPage: state.formVisibleOnPage
-    // selectedWineBarrel:
+    formVisibleOnPage: state.formVisibleOnPage,
+    selectedWineBarrel: state.selectWineBarrel
   }
 }
 
