@@ -7,19 +7,17 @@ function WineBarrelList(props){
   return(
     <React.Fragment>
       <hr />
-      {Object.values(props.wineBarrelList).map((wineBarrel) =>{
+      {Object.values(props.wineBarrelList).map((wineBarrel) => {
         return <WineBarrel
         whenWineBarrelClicked = { props.onWineBarrelSelection }
         whenSellClicked = { props.onClickingSell}
         name={wineBarrel.name}
-        
-        origin={wineBarrel.origin}
+        // origin={wineBarrel.origin}
         // liters={wineBarrel.liters}
         key={wineBarrel.id}
         id={wineBarrel.id}
         />
       })}
-        
       </React.Fragment>
   );
 }
